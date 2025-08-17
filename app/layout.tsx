@@ -1,4 +1,4 @@
-import StatsBar from "@/components/StatsBar";
+import StatsBar from "../components/StatsBar";
 
 export const metadata = {
   title: "Oeconomia Staking",
