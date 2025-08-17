@@ -1,4 +1,5 @@
 import StatsBar from "@/components/StatsBar";
+import "./globals.css";
 
 export const metadata = {
   title: "Oeconomia Staking",

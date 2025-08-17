@@ -181,7 +181,7 @@ export default function StatsBar() {
     <div style={{ padding: "16px 0 12px", borderBottom: "1px solid #333" }}>
       <div style={{ display: "flex", gap: 16, alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap" }}>
         <div>
-          <div style={{ fontSize: 28, fontWeight: 800, lineHeight: 1.1 }}>Oeconomia — Staking</div>
+          <div style={{ fontSize: 28, fontWeight: 800, lineHeight: 1.1 }}>Oeconomia Staking</div>
           <div style={{ opacity: 0.75, marginTop: 4 }}>DooDoo Butt (DDB) • Sepolia</div>
         </div>
         <button onClick={fetchStats} style={{ padding: "6px 10px", borderRadius: 8 }} disabled={!readProvider}>

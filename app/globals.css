@@ -1,0 +1,12 @@
+/* app/globals.css */
+.btn {
+  color: #fff;                 /* <- white text */
+  background: #2d2d2d;
+  border: 1px solid #555;
+
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn:hover { background: #3a3a3a; }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }

@@ -424,7 +424,7 @@ export default function StakingWidget() {
   return (
     <div style={{ maxWidth: 840, margin: "24px auto", padding: 16, border: "1px solid #333", borderRadius: 12 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8 }}>
-        <h2 style={{ margin: 0 }}>DooDoo Butt — Staking</h2>
+        <h2 style={{ margin: 0 }}>DooDoo Butt Staking</h2>
 
         {connected ? (
           <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
@@ -473,11 +473,14 @@ export default function StakingWidget() {
       </div>
 
       <div style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
-        <button onClick={doStake} disabled={!connected || pending !== "" || !VALID_STAKING}>Approve + Stake</button>
-        <button onClick={doWithdraw} disabled={!connected || pending !== "" || !VALID_STAKING}>Withdraw (after lock)</button>
-        <button onClick={doEarlyWithdraw} disabled={!connected || pending !== "" || !VALID_STAKING}>Early Withdraw (penalty)</button>
-        <button onClick={doGetReward} disabled={!connected || pending !== "" || !VALID_STAKING}>Claim Rewards</button>
-        <button onClick={doExit} disabled={!connected || pending !== "" || !VALID_STAKING}>Exit (Withdraw+Claim)</button>
+<button className="btn" onClick={connect}>Connect Wallet (Sepolia)</button>
+<button className="btn" onClick={disconnect}>Disconnect</button>
+
+<button className="btn" onClick={doStake}     disabled={!connected || pending !== "" || !VALID_STAKING}>Approve + Stake</button>
+<button className="btn" onClick={doWithdraw}  disabled={!connected || pending !== "" || !VALID_STAKING}>Withdraw (after lock)</button>
+<button className="btn" onClick={doEarlyWithdraw} disabled={!connected || pending !== "" || !VALID_STAKING}>Early Withdraw (penalty)</button>
+<button className="btn" onClick={doGetReward} disabled={!connected || pending !== "" || !VALID_STAKING}>Claim Rewards</button>
+<button className="btn" onClick={doExit}      disabled={!connected || pending !== "" || !VALID_STAKING}>Exit (Withdraw+Claim)</button>
       </div>
 
       {pending && <div style={{ marginTop: 12 }}>⏳ {pending}</div>}
