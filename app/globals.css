@@ -662,3 +662,42 @@ input[type="number"]:focus {
     justify-content: flex-end;
   }
 }
+
+/* --- Mobile overrides (place at very end) --- */
+@media (max-width: 980px){
+
+  /* 1) Re-enable page scrolling on mobile (overrides earlier !important) */
+  html, body { overflow: auto !important; }
+
+  /* 2) One-column layout; let content define height */
+  .layout{
+    grid-template-columns: 1fr !important;
+    height: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* 3) Sidebar above the cards; allow it to grow and scroll with the page */
+  .sidebar{
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    margin: 0 12px !important;
+  }
+
+  /* 4) MAIN should not be its own scroll container on mobile */
+  .main{
+    height: auto !important;
+    overflow: visible !important;
+    padding-bottom: 24px !important;
+  }
+
+  /* 5) Two-column stats grid in the sidebar (3 rows × 2 cols) */
+  .side-grid{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+}
