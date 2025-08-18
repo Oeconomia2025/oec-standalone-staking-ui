@@ -1,6 +1,6 @@
 "use client";
-// change this line:
-import StakingWidget from "../../components/StakingWidget";
+import StakingWidgetCards from "@/components/StakingWidgetCards";
+
 export default function Page() {
-  return <StakingWidget />;
+  return <StakingWidgetCards />;
 }
