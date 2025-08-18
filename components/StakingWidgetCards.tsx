@@ -488,6 +488,7 @@ export default function StakingWidgetNeo() {
                 : "—";
               const myBal = connected && isLive ? myBalances[p.id] ?? "0" : "0";
               const myEarn = connected && isLive ? myEarned[p.id] ?? "0" : "0";
+              const earnedIsZero = Number(myEarn || "0") <= 0;  // 
               const inputVal = amountByPool[p.id] ?? "0";
               const amountNum = Number(inputVal || "0");
               const estDaily = fmt2(dailyReward(amountNum, p.aprBps));
@@ -703,7 +704,7 @@ export default function StakingWidgetNeo() {
 <button
   className="btn success big"   // ← add `big`
   disabled={!connected || earnedIsZero || pending !== ""}
-  onClick={() => claimRewards(p.id)}
+  onClick={() => claim(p.id)}
 >
   Claim Rewards
 </button>
