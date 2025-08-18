@@ -65,7 +65,7 @@ body {
 
   position: relative; /* sticky not needed when page doesn't scroll */
   top: 0;
-  height: calc(80dvh - 64px); /* same visual height as before */
+  height: calc(100dvh - 64px); /* same visual height as before */
   overflow: hidden; /* ← block wheel/trackpad inside sidebar */
 }
 
