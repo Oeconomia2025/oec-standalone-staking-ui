@@ -942,5 +942,17 @@ body {
   }
 }
 
+/* === MOBILE WIDTH ALIGNMENT HOTFIX (≤980px) — ensure top/bottom match === */
+@media (max-width: 980px) {
+  /* Make sidebar (top metrics) and main (pool cards) use the same side margins */
+  .main, .sidebar {
+    margin-left: 12px !important;
+    margin-right: 12px !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+  /* Keep main content flush inside those margins */
+  .main { padding-left: 0 !important; padding-right: 0 !important; }
+}
 
 
