@@ -533,47 +533,40 @@ export default function StakingWidgetNeo() {
                   {opened && (
                     <div className="neo-body">
                       {/* Tabs + actions row */}
-                      <div className="seg-row">
-                        <div className="seg">
-                          {(["stake", "unstake", "rewards"] as const).map(
-                            (t) => (
-                              <button
-                                key={t}
-                                className={`seg-btn ${
-                                  tab === t ? "active" : ""
-                                }`}
-                                onClick={() =>
-                                  setTabByPool((x) => ({ ...x, [p.id]: t }))
-                                }
-                              >
-                                {t === "stake"
-                                  ? "Stake"
-                                  : t === "unstake"
-                                  ? "Unstake"
-                                  : "Rewards"}
-                              </button>
-                            )
-                          )}
-                        </div>
+{/* Tabs + actions row */}
+<div className="seg-row">
+  <div className="seg">
+    {/* Stake / Unstake / Rewards buttons (unchanged) */}
+    {(["stake","unstake","rewards"] as const).map(t => (
+      <button
+        key={t}
+        className={`seg-btn ${tab === t ? "active" : ""}`}
+        onClick={() => setTabByPool(x => ({ ...x, [p.id]: t }))}
+      >
+        {t === "stake" ? "Stake" : t === "unstake" ? "Unstake" : "Rewards"}
+      </button>
+    ))}
+  </div>
 
-                        <div className="seg-actions">
-                          <button
-                            className="btn danger"
-                            disabled={!connected || !isLive || pending !== ""}
-                            onClick={() => early(p.id)}
-                          >
-                            Early Withdraw
-                          </button>
-                          <button
-                            className="btn ghost"
-                            disabled={!connected || !isLive || pending !== ""}
-                            onClick={() => exit(p.id)}
-                          >
-                            Exit (Withdraw + Claim)
-                          </button>
-                          {pending && <div className="small">⏳ {pending}</div>}
-                        </div>
-                      </div>
+  <div className="seg-actions">
+    <button
+      className="btn danger"
+      disabled={!connected || !isLive || pending !== ""}
+      onClick={() => early(p.id)}
+    >
+      Early Withdraw
+    </button>
+
+    <button
+      className="btn ghost"
+      disabled={!connected || !isLive || pending !== ""}
+      onClick={() => exit(p.id)}
+    >
+      Exit (Withdraw + Claim)
+    </button>
+  </div>
+</div>
+
 
                       <div className="neo-content">
                         {/* Left column */}
@@ -707,19 +700,14 @@ export default function StakingWidgetNeo() {
                                     {fmt2(myEarn)} <span>DDB</span>
                                   </div>
                                   <div className="small">Available Rewards</div>
-                                  <button
-                                    className="btn big"
-                                    disabled={
-                                      !connected ||
-                                      !isLive ||
-                                      pending !== "" ||
-                                      Number(myEarn) <= 0
-                                    }
-                                    onClick={() => claim(p.id)}
-                                    style={{ marginTop: 12 }}
-                                  >
-                                    Claim Rewards
-                                  </button>
+<button
+  className="btn success big"   // ← add `big`
+  disabled={!connected || earnedIsZero || pending !== ""}
+  onClick={() => claimRewards(p.id)}
+>
+  Claim Rewards
+</button>
+
                                 </div>
                               </div>
                             </>

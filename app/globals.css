@@ -62,9 +62,7 @@ body {
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 10px;
-
   position: relative; /* sticky not needed when page doesn't scroll */
-
   height: calc(100dvh - 64px); /* same visual height as before */
   overflow: hidden; /* ← block wheel/trackpad inside sidebar */
 }
@@ -664,13 +662,15 @@ input[type="number"]:focus {
 }
 
 /* --- Mobile overrides (place at very end) --- */
-@media (max-width: 980px){
-
+@media (max-width: 980px) {
   /* 1) Re-enable page scrolling on mobile (overrides earlier !important) */
-  html, body { overflow: auto !important; }
+  html,
+  body {
+    overflow: auto !important;
+  }
 
   /* 2) One-column layout; let content define height */
-  .layout{
+  .layout {
     grid-template-columns: 1fr !important;
     height: auto !important;
     margin-left: 0 !important;
@@ -680,7 +680,7 @@ input[type="number"]:focus {
   }
 
   /* 3) Sidebar above the cards; allow it to grow and scroll with the page */
-  .sidebar{
+  .sidebar {
     width: auto !important;
     height: auto !important;
     overflow: visible !important;
@@ -688,14 +688,14 @@ input[type="number"]:focus {
   }
 
   /* 4) MAIN should not be its own scroll container on mobile */
-  .main{
+  .main {
     height: auto !important;
     overflow: visible !important;
     padding-bottom: 24px !important;
   }
 
   /* 5) Two-column stats grid in the sidebar (3 rows × 2 cols) */
-  .side-grid{
+  .side-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 8px !important;
@@ -703,80 +703,112 @@ input[type="number"]:focus {
 }
 
 /* ====== MOBILE CARD LAYOUT & BUTTONS ====== */
-@media (max-width: 980px){
+@media (max-width: 980px) {
   /* 1) Stack the two columns inside each card */
-  .neo-content{
+  .neo-content {
     grid-template-columns: 1fr !important;
     gap: 12px !important;
   }
 
   /* 2) Lighter paddings/headline on the card header */
-  .neo-head{ padding: 12px !important; }
-  .neo-head-title{ font-size: 18px !important; }
-  .neo-badge{ font-size: 11px !important; padding: 3px 8px !important; }
+  .neo-head {
+    padding: 12px !important;
+  }
+  .neo-head-title {
+    font-size: 18px !important;
+  }
+  .neo-badge {
+    font-size: 11px !important;
+    padding: 3px 8px !important;
+  }
 
   /* 3) Tabs + action buttons row */
   .seg-row{
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-    margin-bottom: 10px !important;
+    flex-direction:column;
+    align-items:stretch;
+    gap:8px;
+    margin-bottom:10px !important;
   }
-  /* Let the segmented control fill the width */
   .seg-row .seg{
-    width: 100% !important;
-    margin-bottom: 0 !important;
-    padding: 4px !important;
+    width:100% !important;
   }
-  .seg-btn{ padding: 10px 12px !important; font-size: 16px !important; }
+
+  .seg-btn {
+    padding: 10px 12px !important;
+    font-size: 16px !important;
+  }
 
   /* Actions: keep visible, wrap to 2-up buttons */
   .seg-actions{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 8px;
-    width: 100%;
+    width:100%;
+    justify-content:flex-start;
   }
   .seg-actions .btn{
-    flex: 1 1 calc(50% - 4px); /* two per row */
-    min-width: 0;
-    height: 44px;
+    flex:1 1 calc(50% - 4px);  /* two buttons per row on phones */
+    min-width:0;
+    height:44px;
   }
 
   /* 4) Inputs & chips feel good on small screens */
-  .input-cta{ flex-direction: column; align-items: stretch; gap: 10px; }
-  .input{ height: 52px !important; font-size: 18px !important; }
-  .neo-quick{ gap: 8px !important; }
-  .neo-quick .chip{
+  .input-cta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .input {
+    height: 52px !important;
+    font-size: 18px !important;
+  }
+  .neo-quick {
+    gap: 8px !important;
+  }
+  .neo-quick .chip {
     flex: 1 1 calc(50% - 4px);
     text-align: center;
     height: 44px;
   }
 
   /* 5) Panels/kvs spacing */
-  .panel{ padding: 12px !important; }
-  .kv{ font-size: 16px !important; }
+  .panel {
+    padding: 12px !important;
+  }
+  .kv {
+    font-size: 16px !important;
+  }
 
   /* 6) Make sure nothing clips inside the card body */
-  .neo-body{ overflow: visible !important; }
+  .neo-body {
+    overflow: visible !important;
+  }
 }
 
 /* ====== SMALL PHONES: tighten further ====== */
-@media (max-width: 600px){
-  .neo-head-title{ font-size: 16px !important; }
-  .seg-btn{ font-size: 15px !important; padding: 9px 10px !important; }
-  .seg-actions .btn{ height: 42px; }
-  .input{ font-size: 17px !important; height: 50px !important; }
+@media (max-width: 600px) {
+  .neo-head-title {
+    font-size: 16px !important;
+  }
+  .seg-btn {
+    font-size: 15px !important;
+    padding: 9px 10px !important;
+  }
+  .seg-actions .btn {
+    height: 42px;
+  }
+  .input {
+    font-size: 17px !important;
+    height: 50px !important;
+  }
 }
 
 /* ====== SIDEBAR ON MOBILE (page scrolls, stats in 2 columns) ====== */
-@media (max-width: 980px){
+@media (max-width: 980px) {
   /* If your desktop CSS locks the page, re-enable on mobile */
-  html, body{ overflow: auto !important; }
+  html,
+  body {
+    overflow: auto !important;
+  }
 
-  .layout{
+  .layout {
     grid-template-columns: 1fr !important;
     height: auto !important;
     margin-left: 0 !important;
@@ -785,21 +817,21 @@ input[type="number"]:focus {
     max-width: 100% !important;
   }
 
-  .sidebar{
+  .sidebar {
     width: auto !important;
     height: auto !important;
     overflow: visible !important;
     margin: 0 12px !important;
   }
 
-  .main{
+  .main {
     height: auto !important;
     overflow: visible !important;
     padding-bottom: 24px !important;
   }
 
   /* 6 items in 2 columns (3 rows) */
-  .side-grid{
+  .side-grid {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 8px !important;
@@ -808,45 +840,119 @@ input[type="number"]:focus {
 /* === Header-aware layout & scroll FIX (place at end) === */
 
 /* 0) Declare header height once */
-:root { --header-h: 64px; } /* adjust if your header is taller */
+:root {
+  --header-h: 64px;
+} /* adjust if your header is taller */
 
 /* 1) Always keep content below the fixed header */
-.oec-header{ position: fixed; top:0; left:0; right:0; height: var(--header-h); }
-body{ padding-top: var(--header-h) !important; }           /* pushes page down */
+.oec-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-h);
+}
+body {
+  padding-top: var(--header-h) !important;
+} /* pushes page down */
 
 /* 2) Desktop: page locked, right column owns the scroll */
-html, body{ overflow: hidden !important; }                 /* no page scrollbar */
-.layout{
-  margin-top: 0 !important;                                /* avoid double offset */
-  height: calc(100dvh - var(--header-h)) !important;       /* fill below header */
+html,
+body {
+  overflow: hidden !important;
+} /* no page scrollbar */
+.layout {
+  margin-top: -25px !important; /* avoid double offset */
+  height: calc(100dvh - var(--header-h)) !important; /* fill below header */
 }
-.sidebar{
+.sidebar {
+  height: 90% !important;
+  overflow: hidden !important; /* sidebar never scrolls on desktop */
+}
+.main {
   height: 100% !important;
-  overflow: hidden !important;                              /* sidebar never scrolls on desktop */
+  overflow-y: auto !important; /* single scroller */
+  -ms-overflow-style: none; /* hide scrollbar (IE/old Edge) */
+  scrollbar-width: none; /* hide scrollbar (Firefox) */
 }
-.main{
-  height: 100% !important;
-  overflow-y: auto !important;                              /* single scroller */
-  -ms-overflow-style: none;                                 /* hide scrollbar (IE/old Edge) */
-  scrollbar-width: none;                                    /* hide scrollbar (Firefox) */
-}
-.main::-webkit-scrollbar{ width:0; height:0; display:none; }/* hide scrollbar (Chromium/WebKit) */
+.main::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+} /* hide scrollbar (Chromium/WebKit) */
 
 /* 3) Mobile: page scrolls, no inner scrollbar on .main */
-@media (max-width: 980px){
-  html, body{ overflow: auto !important; }                  /* page can scroll */
-  .layout{
-    height: auto !important;                                /* grid grows with content */
-    grid-template-columns: 1fr !important;                  /* stack sidebar above cards */
+@media (max-width: 980px) {
+  html,
+  body {
+    overflow: auto !important;
+  } /* page can scroll */
+  .layout {
+    height: auto !important; /* grid grows with content */
+    grid-template-columns: 1fr !important; /* stack sidebar above cards */
   }
-  .sidebar{
+  .sidebar {
     height: auto !important;
-    overflow: visible !important;                           /* flows with the page */
+    overflow: visible !important; /* flows with the page */
   }
-  .main{
+  .main {
     height: auto !important;
-    overflow: visible !important;                           /* kill the inner scrollbar */
-    -ms-overflow-style: auto; scrollbar-width: auto;
+    overflow: visible !important; /* kill the inner scrollbar */
+    -ms-overflow-style: auto;
+    scrollbar-width: auto;
   }
-  .main::-webkit-scrollbar{ display: none; width: 0; height: 0; } /* nothing to show anyway */
+  .main::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  } /* nothing to show anyway */
 }
+
+
+/* === MOBILE HOTFIX (≤980px) — appended by ChatGPT === */
+@media (max-width: 980px) {
+
+  /* 1) Make top/bottom of cards the same width */
+  .neo-head { padding: 12px !important; }
+  .neo-body { padding: 12px !important; }
+
+  /* 2) Keep the actions row inside the card and show Exit button */
+  .seg-actions {
+    margin-left: 0 !important;
+    width: 100% !important;
+    flex-wrap: wrap;
+    gap: 8px !important;
+    justify-content: flex-start !important;
+  }
+  .seg-actions .btn {
+    flex: 1 1 calc(50% - 4px);
+    min-width: 0;
+    white-space: normal;
+    height: 44px;
+  }
+
+  /* 3) Prevent Claim panel overflow */
+  .btn.big {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .neo-wrapper,
+  .panel {
+    width: 100% !important;
+  }
+}
+
+
+/* === MOBILE WIDTH ALIGNMENT HOTFIX (≤980px) — ensure top/bottom match === */
+@media (max-width: 980px) {
+  /* Make sidebar (top metrics) and main (pool cards) use the same side margins */
+  .main, .sidebar {
+    margin-left: 12px !important;
+    margin-right: 12px !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+  /* Keep main content flush inside those margins */
+  .main { padding-left: 0 !important; padding-right: 0 !important; }
+}
+
