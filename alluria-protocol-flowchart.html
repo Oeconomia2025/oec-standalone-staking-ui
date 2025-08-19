@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alluria Protocol - Visual Explanation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2d1b69 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff, #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #a0a0ff;
+            margin-bottom: 30px;
+        }
+
+        .protocol-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .token-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .token-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .token-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .alud-icon {
+            background: linear-gradient(45deg, #00ff88, #00d4ff);
+        }
+
+        .alur-icon {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+        }
+
+        .flowchart-container {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+        }
+
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .flow-step {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(255, 0, 255, 0.2) 100%);
+            border: 2px solid rgba(0, 212, 255, 0.5);
+            border-radius: 15px;
+            padding: 25px;
+            min-width: 300px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .flow-step:hover {
+            border-color: #00d4ff;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .flow-step h3 {
+            color: #00d4ff;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .flow-arrow {
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 30px solid #ff00ff;
+            margin: 10px auto;
+            filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.5));
+        }
+
+        .collateral-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .collateral-item {
+            background: linear-gradient(135deg, rgba(255, 170, 0, 0.2) 0%, rgba(255, 100, 100, 0.2) 100%);
+            border: 1px solid rgba(255, 170, 0, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .collateral-item:hover {
+            border-color: #ffaa00;
+            box-shadow: 0 0 20px rgba(255, 170, 0, 0.3);
+        }
+
+        .user-journey {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .journey-step {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: linear-gradient(45deg, #00ff88, #00d4ff);
+            color: #000;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1) 0%, rgba(128, 0, 255, 0.1) 100%);
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 60px 0 40px;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+            .container { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Alluria Protocol</h1>
+            <p>Next-Generation Multi-Collateral Stablecoin System</p>
+            <p>Inspired by Liquity, Enhanced for Multi-Asset Collateralization</p>
+        </div>
+
+        <!-- Token Overview -->
+        <div class="protocol-overview">
+            <div class="token-card">
+                <div class="token-icon alud-icon">ALUD</div>
+                <h2>ALUD Token</h2>
+                <p><strong>The Stablecoin</strong></p>
+                <p>Decentralized USD-pegged stablecoin backed by multiple high-quality collateral assets. Maintains stability through algorithmic mechanisms and over-collateralization.</p>
+            </div>
+            
+            <div class="token-card">
+                <div class="token-icon alur-icon">ALUR</div>
+                <h2>ALUR Token</h2>
+                <p><strong>The Incentive Token</strong></p>
+                <p>Governance and incentive token that captures protocol fees, provides governance rights, and rewards ecosystem participants.</p>
+            </div>
+        </div>
+
+        <!-- Main Protocol Flow -->
+        <div class="flowchart-container">
+            <h2 class="section-title">How Alluria Works</h2>
+            
+            <div class="flowchart">
+                <div class="flow-step">
+                    <h3>1. Deposit Collateral</h3>
+                    <p>Users deposit high-quality assets (ETH, WBTC, BNB, Wrapped TAO) into the protocol as collateral</p>
+                    <div class="collateral-grid">
+                        <div class="collateral-item">
+                            <strong>ETH</strong><br>Ethereum
+                        </div>
+                        <div class="collateral-item">
+                            <strong>WBTC</strong><br>Wrapped Bitcoin
+                        </div>
+                        <div class="collateral-item">
+                            <strong>BNB</strong><br>Binance Coin
+                        </div>
+                        <div class="collateral-item">
+                            <strong>TAO</strong><br>Wrapped TAO
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-arrow"></div>
+
+                <div class="flow-step">
+                    <h3>2. Mint ALUD Stablecoin</h3>
+                    <p>Against deposited collateral, users can mint ALUD tokens at a minimum collateralization ratio, maintaining protocol stability</p>
+                </div>
+
+                <div class="flow-arrow"></div>
+
+                <div class="flow-step">
+                    <h3>3. Stability Mechanisms</h3>
+                    <p>Liquidation system, redemption mechanism, and ALUR incentives work together to maintain ALUD's peg to $1 USD</p>
+                </div>
+
+                <div class="flow-arrow"></div>
+
+                <div class="flow-step">
+                    <h3>4. Earn ALUR Rewards</h3>
+                    <p>Protocol participants earn ALUR tokens through providing stability pool liquidity, early adopter rewards, and governance participation</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Journey -->
+        <h2 class="section-title">User Journey</h2>
+        <div class="user-journey">
+            <div class="journey-step">
+                <div class="step-number">1</div>
+                <h3>Connect Wallet</h3>
+                <p>Connect your Web3 wallet to the Alluria Protocol interface</p>
+            </div>
+            
+            <div class="journey-step">
+                <div class="step-number">2</div>
+                <h3>Choose Collateral</h3>
+                <p>Select from ETH, WBTC, BNB, or Wrapped TAO as your collateral asset</p>
+            </div>
+            
+            <div class="journey-step">
+                <div class="step-number">3</div>
+                <h3>Deposit & Mint</h3>
+                <p>Deposit collateral and mint ALUD stablecoins against your position</p>
+            </div>
+            
+            <div class="journey-step">
+                <div class="step-number">4</div>
+                <h3>Manage Position</h3>
+                <p>Monitor collateral ratio, add/remove collateral, repay ALUD, or earn ALUR</p>
+            </div>
+        </div>
+
+        <!-- Protocol Benefits -->
+        <h2 class="section-title">Why Choose Alluria?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <h3>🔒 Multi-Collateral Security</h3>
+                <p>Diversified risk across multiple high-quality assets reduces systemic risk and improves stability</p>
+            </div>
+            
+            <div class="benefit-card">
+                <h3>⚡ Capital Efficiency</h3>
+                <p>Optimized collateralization ratios and liquidation mechanisms provide maximum capital efficiency</p>
+            </div>
+            
+            <div class="benefit-card">
+                <h3>🏛️ Decentralized Governance</h3>
+                <p>ALUR token holders govern protocol parameters, collateral additions, and system upgrades</p>
+            </div>
+            
+            <div class="benefit-card">
+                <h3>💰 Yield Opportunities</h3>
+                <p>Earn ALUR rewards through stability pool participation and early ecosystem adoption</p>
+            </div>
+            
+            <div class="benefit-card">
+                <h3>🚀 Innovative Assets</h3>
+                <p>First protocol to accept Wrapped TAO as collateral, positioning for AI/ML economy growth</p>
+            </div>
+            
+            <div class="benefit-card">
+                <h3>📈 Scalable Design</h3>
+                <p>Built for expansion with easy addition of new collateral types as the ecosystem grows</p>
+            </div>
+        </div>
+
+        <!-- Technical Architecture -->
+        <div class="flowchart-container" style="margin-top: 60px;">
+            <h2 class="section-title">Technical Architecture</h2>
+            
+            <div class="flowchart">
+                <div class="flow-step">
+                    <h3>Smart Contract Layer</h3>
+                    <p>Core protocol contracts handle collateral management, ALUD minting/burning, liquidations, and ALUR distribution</p>
+                </div>
+
+                <div class="flow-arrow"></div>
+
+                <div class="flow-step">
+                    <h3>Oracle Price Feeds</h3>
+                    <p>Chainlink and other decentralized oracles provide real-time price data for all collateral assets</p>
+                </div>
+
+                <div class="flow-arrow"></div>
+
+                <div class="flow-step">
+                    <h3>Liquidation Engine</h3>
+                    <p>Automated liquidation system maintains protocol solvency by liquidating under-collateralized positions</p>
+                </div>
+
+                <div class="flow-arrow"></div>
+
+                <div class="flow-step">
+                    <h3>Stability Pool</h3>
+                    <p>Community-funded insurance mechanism that absorbs liquidated debt in exchange for ALUR rewards</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; margin-top: 80px; padding: 40px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <h3 style="color: #00d4ff; margin-bottom: 15px;">Ready to Experience Alluria?</h3>
+            <p style="color: #a0a0ff; font-size: 1.1rem;">Join the next generation of decentralized stablecoin infrastructure</p>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling and animation effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            // Apply animation to all major elements
+            document.querySelectorAll('.flow-step, .journey-step, .benefit-card, .token-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Add interactive hover effects for flow steps
+            document.querySelectorAll('.flow-step').forEach(step => {
+                step.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                
+                step.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

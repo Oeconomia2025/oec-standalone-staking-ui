@@ -1,0 +1,79 @@
+[build]
+  publish = "dist/public"
+  command = "npm install --include=dev && npx vite build --config vite.config.netlify.ts && npx esbuild netlify/functions/*.ts --platform=node --target=node20 --format=cjs --bundle --packages=external --outdir=netlify/functions/dist --out-extension:.js=.js"
+  functions = "netlify/functions/dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# API function redirects
+[[redirects]]
+  from = "/api/token/*"
+  to = "/.netlify/functions/token"
+  status = 200
+
+[[redirects]]
+  from = "/api/transactions/*"
+  to = "/.netlify/functions/transactions"
+  status = 200
+
+[[redirects]]
+  from = "/api/holders/*"
+  to = "/.netlify/functions/holders"
+  status = 200
+
+[[redirects]]
+  from = "/api/price-history/*/*"
+  to = "/.netlify/functions/price-history"
+  status = 200
+
+[[redirects]]
+  from = "/api/network-status"
+  to = "/.netlify/functions/network-status"
+  status = 200
+
+[[redirects]]
+  from = "/api/volume-analytics/*"
+  to = "/.netlify/functions/volume-analytics"
+  status = 200
+
+[[redirects]]
+  from = "/api/portfolio/*"
+  to = "/.netlify/functions/portfolio"
+  status = 200
+
+[[redirects]]
+  from = "/api/live-coin-watch/coins"
+  to = "/.netlify/functions/live-coin-watch-coins"
+  status = 200
+
+[[redirects]]
+  from = "/api/live-coin-watch/status"
+  to = "/.netlify/functions/live-coin-watch-status"
+  status = 200
+
+[[redirects]]
+  from = "/api/live-coin-watch/token/*"
+  to = "/.netlify/functions/live-coin-watch-token"
+  status = 200
+
+[[redirects]]
+  from = "/api/live-coin-watch/sync"
+  to = "/.netlify/functions/live-coin-watch-sync"
+  status = 200
+
+[[redirects]]
+  from = "/api/authentic-token-sync"
+  to = "/.netlify/functions/authentic-token-sync"
+  status = 200
+
+[[redirects]]
+  from = "/api/token-supply/*"
+  to = "/.netlify/functions/token-supply-data"
+  status = 200
+
+# SPA fallback
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

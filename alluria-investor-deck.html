@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alluria Protocol - Investor Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            min-height: 100vh;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Title Slide */
+        .title-slide {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2d1b69 100%);
+            text-align: center;
+        }
+
+        .title-slide h1 {
+            font-size: 4rem;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff, #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.5rem;
+            color: #a0a0ff;
+            margin-bottom: 40px;
+        }
+
+        .title-slide .tagline {
+            font-size: 1.2rem;
+            color: #fff;
+            opacity: 0.8;
+        }
+
+        /* Problem Slide */
+        .problem-slide {
+            background: linear-gradient(135deg, #2d1b69 0%, #1a1a3e 100%);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .problem-item {
+            background: linear-gradient(135deg, rgba(255, 100, 100, 0.2) 0%, rgba(255, 0, 0, 0.1) 100%);
+            border: 1px solid rgba(255, 100, 100, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        /* Solution Slide */
+        .solution-slide {
+            background: linear-gradient(135deg, #1a1a3e 0%, #0f0f23 100%);
+        }
+
+        .solution-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .before, .after {
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .before {
+            background: linear-gradient(135deg, rgba(255, 100, 100, 0.1) 0%, rgba(255, 0, 0, 0.05) 100%);
+            border: 2px solid rgba(255, 100, 100, 0.3);
+        }
+
+        .after {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+        }
+
+        /* Market Opportunity */
+        .market-slide {
+            background: linear-gradient(135deg, #0f0f23 0%, #2d1b69 100%);
+        }
+
+        .market-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(255, 0, 255, 0.1) 100%);
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #00d4ff;
+            margin-bottom: 10px;
+        }
+
+        /* Technology Slide */
+        .tech-slide {
+            background: linear-gradient(135deg, #2d1b69 0%, #0f0f23 100%);
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .tech-item {
+            background: linear-gradient(135deg, rgba(255, 170, 0, 0.2) 0%, rgba(255, 0, 255, 0.1) 100%);
+            border: 1px solid rgba(255, 170, 0, 0.4);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        /* Tokenomics Slide */
+        .tokenomics-slide {
+            background: linear-gradient(135deg, #1a1a3e 0%, #2d1b69 100%);
+        }
+
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .token-details {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        /* Roadmap Slide */
+        .roadmap-slide {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
+        }
+
+        .roadmap-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .roadmap-item {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-left: 50px;
+            position: relative;
+        }
+
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, #00ff88, #00d4ff);
+            border-radius: 50%;
+        }
+
+        .roadmap-quarter {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #00d4ff;
+            margin-bottom: 10px;
+        }
+
+        /* Team Slide */
+        .team-slide {
+            background: linear-gradient(135deg, #2d1b69 0%, #1a1a3e 100%);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1) 0%, rgba(128, 0, 255, 0.1) 100%);
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* Slide Headers */
+        .slide h1 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide h2 {
+            font-size: 2rem;
+            color: #00d4ff;
+            margin-bottom: 15px;
+        }
+
+        .slide p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+
+        /* Navigation */
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: #00d4ff;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 20px;
+            }
+            
+            .title-slide h1 {
+                font-size: 2.5rem;
+            }
+            
+            .slide h1 {
+                font-size: 2rem;
+            }
+            
+            .solution-comparison {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .tokenomics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-dots {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+        <div class="nav-dot active" data-slide="0"></div>
+        <div class="nav-dot" data-slide="1"></div>
+        <div class="nav-dot" data-slide="2"></div>
+        <div class="nav-dot" data-slide="3"></div>
+        <div class="nav-dot" data-slide="4"></div>
+        <div class="nav-dot" data-slide="5"></div>
+        <div class="nav-dot" data-slide="6"></div>
+        <div class="nav-dot" data-slide="7"></div>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide title-slide">
+        <div class="slide-content">
+            <h1>Alluria Protocol</h1>
+            <p class="subtitle">Next-Generation Multi-Collateral Stablecoin Infrastructure</p>
+            <p class="tagline">Revolutionizing DeFi with Multi-Asset Backed Stability</p>
+        </div>
+    </div>
+
+    <!-- Slide 2: Problem -->
+    <div class="slide problem-slide">
+        <div class="slide-content">
+            <h1>The Problem</h1>
+            <p>Current stablecoin solutions face critical limitations that constrain DeFi growth and user adoption.</p>
+            
+            <div class="problem-grid">
+                <div class="problem-item">
+                    <div class="problem-icon">⚠️</div>
+                    <h2>Single Asset Risk</h2>
+                    <p>Most protocols rely on single collateral types, creating systemic risk and capital inefficiency</p>
+                </div>
+                
+                <div class="problem-item">
+                    <div class="problem-icon">🏛️</div>
+                    <h2>Centralization</h2>
+                    <p>Many stablecoins are controlled by centralized entities, contradicting DeFi principles</p>
+                </div>
+                
+                <div class="problem-item">
+                    <div class="problem-icon">💸</div>
+                    <h2>Capital Inefficiency</h2>
+                    <p>High collateralization requirements lock up excessive capital without productive use</p>
+                </div>
+                
+                <div class="problem-item">
+                    <div class="problem-icon">🔒</div>
+                    <h2>Limited Scalability</h2>
+                    <p>Existing protocols struggle to scale and adapt to new asset classes and market conditions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Solution -->
+    <div class="slide solution-slide">
+        <div class="slide-content">
+            <h1>Our Solution</h1>
+            <p>Alluria Protocol introduces multi-collateral stability with innovative asset support and optimized capital efficiency.</p>
+            
+            <div class="solution-comparison">
+                <div class="before">
+                    <h2>❌ Traditional Approach</h2>
+                    <ul style="text-align: left; margin-top: 20px;">
+                        <li>Single collateral dependency</li>
+                        <li>High minimum collateral ratios</li>
+                        <li>Limited asset support</li>
+                        <li>Centralized governance</li>
+                        <li>Static parameters</li>
+                    </ul>
+                </div>
+                
+                <div class="after">
+                    <h2>✅ Alluria Advantage</h2>
+                    <ul style="text-align: left; margin-top: 20px;">
+                        <li>Multi-asset collateral diversification</li>
+                        <li>Optimized collateralization ratios</li>
+                        <li>Support for innovative assets (TAO)</li>
+                        <li>Decentralized governance via ALUR</li>
+                        <li>Dynamic risk management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Market Opportunity -->
+    <div class="slide market-slide">
+        <div class="slide-content">
+            <h1>Market Opportunity</h1>
+            <p>The stablecoin market represents a massive and rapidly growing opportunity in the DeFi ecosystem.</p>
+            
+            <div class="market-stats">
+                <div class="stat-card">
+                    <div class="stat-number">$150B+</div>
+                    <h3>Total Stablecoin Market</h3>
+                    <p>Current market capitalization with continued growth trajectory</p>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">$80B+</div>
+                    <h3>DeFi TVL</h3>
+                    <p>Total Value Locked in decentralized finance protocols</p>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">40%+</div>
+                    <h3>Annual Growth</h3>
+                    <p>Year-over-year growth in stablecoin adoption and usage</p>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">$2T+</div>
+                    <h3>Daily Volume</h3>
+                    <p>Daily transaction volume across all stablecoin transfers</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Technology -->
+    <div class="slide tech-slide">
+        <div class="slide-content">
+            <h1>Technology Stack</h1>
+            <p>Built on proven blockchain infrastructure with cutting-edge innovations for multi-collateral management.</p>
+            
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <h2>🔗 Smart Contracts</h2>
+                    <p>Audited Solidity contracts with modular architecture for easy upgrades and collateral additions</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h2>📊 Oracle Integration</h2>
+                    <p>Chainlink and custom oracle solutions for real-time, accurate price feeds across all assets</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h2>⚡ Liquidation Engine</h2>
+                    <p>Advanced liquidation mechanisms with Dutch auction system for optimal price discovery</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h2>🛡️ Risk Management</h2>
+                    <p>Dynamic risk parameters that adjust based on market conditions and asset volatility</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h2>🔄 Cross-Chain Ready</h2>
+                    <p>Designed for multi-chain deployment with bridge compatibility for maximum reach</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h2>🎯 Gas Optimization</h2>
+                    <p>Highly optimized contract code minimizing transaction costs for all user interactions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Tokenomics -->
+    <div class="slide tokenomics-slide">
+        <div class="slide-content">
+            <h1>Tokenomics</h1>
+            <p>Dual-token system designed for stability, growth, and sustainable ecosystem development.</p>
+            
+            <div class="tokenomics-grid">
+                <div class="token-details">
+                    <h2>💚 ALUD - The Stablecoin</h2>
+                    <ul style="margin-top: 20px;">
+                        <li><strong>Peg:</strong> $1.00 USD</li>
+                        <li><strong>Backing:</strong> Multi-asset collateral</li>
+                        <li><strong>Minimum CR:</strong> 110% (varies by asset)</li>
+                        <li><strong>Supply:</strong> Elastic based on demand</li>
+                        <li><strong>Redemption:</strong> Always redeemable for $1 of collateral</li>
+                        <li><strong>Use Cases:</strong> DeFi, payments, store of value</li>
+                    </ul>
+                </div>
+                
+                <div class="token-details">
+                    <h2>🔥 ALUR - The Incentive Token</h2>
+                    <ul style="margin-top: 20px;">
+                        <li><strong>Supply:</strong> 100M tokens (deflationary)</li>
+                        <li><strong>Distribution:</strong> Community rewards, team, investors</li>
+                        <li><strong>Governance:</strong> Protocol parameter voting</li>
+                        <li><strong>Rewards:</strong> Stability pool, early adopters</li>
+                        <li><strong>Fee Capture:</strong> Protocol revenue sharing</li>
+                        <li><strong>Staking:</strong> Additional yield opportunities</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Roadmap -->
+    <div class="slide roadmap-slide">
+        <div class="slide-content">
+            <h1>Development Roadmap</h1>
+            <p>Strategic development phases designed for sustainable growth and market adoption.</p>
+            
+            <div class="roadmap-timeline">
+                <div class="roadmap-item">
+                    <div class="roadmap-quarter">Q1 2024</div>
+                    <h2>Foundation & Testnet</h2>
+                    <p>Core smart contract development, security audits, testnet deployment with ETH and WBTC collateral</p>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-quarter">Q2 2024</div>
+                    <h2>Mainnet Launch</h2>
+                    <p>Production deployment, liquidity mining programs, BNB collateral integration, community building</p>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-quarter">Q3 2024</div>
+                    <h2>TAO Integration</h2>
+                    <p>Wrapped TAO collateral support, advanced liquidation mechanisms, governance token launch</p>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-quarter">Q4 2024</div>
+                    <h2>Ecosystem Expansion</h2>
+                    <p>Additional collateral assets, cross-chain bridges, institutional partnerships, mobile app</p>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-quarter">2025+</div>
+                    <h2>Global Adoption</h2>
+                    <p>Multi-chain deployment, advanced DeFi integrations, real-world asset tokenization support</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Investment Opportunity -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Investment Opportunity</h1>
+            <p style="text-align: center; font-size: 1.3rem; margin-bottom: 40px;">Join us in building the future of decentralized finance</p>
+            
+            <div class="market-stats">
+                <div class="stat-card">
+                    <h2>🎯 Target Raise</h2>
+                    <p>Seeking strategic partners and investors to accelerate development and market adoption</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h2>💼 Use of Funds</h2>
+                    <p>Development (40%), Security (25%), Marketing (20%), Operations (15%)</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h2>🚀 Growth Strategy</h2>
+                    <p>Focus on institutional adoption, DeFi integrations, and cross-chain expansion</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h2>🎖️ Team Expertise</h2>
+                    <p>Experienced team with proven track record in DeFi, blockchain, and traditional finance</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px;">
+                <h2 style="color: #00d4ff; margin-bottom: 20px;">Ready to Shape the Future of Money?</h2>
+                <p style="font-size: 1.2rem; color: #a0a0ff;">Contact us to learn more about investment opportunities in Alluria Protocol</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const navDots = document.querySelectorAll('.nav-dot');
+            
+            // Update active dot on scroll
+            function updateActiveDot() {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                
+                slides.forEach((slide, index) => {
+                    const slideTop = slide.offsetTop;
+                    const slideBottom = slideTop + slide.offsetHeight;
+                    
+                    if (scrollPosition >= slideTop - windowHeight/2 && scrollPosition < slideBottom - windowHeight/2) {
+                        navDots.forEach(dot => dot.classList.remove('active'));
+                        navDots[index].classList.add('active');
+                    }
+                });
+            }
+            
+            // Dot click navigation
+            navDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    slides[index].scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            // Update active dot on scroll
+            window.addEventListener('scroll', updateActiveDot);
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                const currentSlide = Math.round(window.scrollY / window.innerHeight);
+                
+                if (e.key === 'ArrowDown' && currentSlide < slides.length - 1) {
+                    slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+                } else if (e.key === 'ArrowUp' && currentSlide > 0) {
+                    slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
